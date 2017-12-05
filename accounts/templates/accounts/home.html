@@ -1,8 +1,14 @@
 {% extends 'base.html' %}
-{% block head %}
-<meta charset="utf-8">
-<title>Home</title>
-{% endblock %}
+
 {% block body %}
-<h1>Home</h1>
+    {% if all_reservations %}
+        <h3>Wszystkie rezerwacje:</h3>
+        <ul>
+            {% for reservation in all_reservations %}
+            <li><a href="{% url 'account:reservations' reservation.id %}">{{ reservation.roomid }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <h3>Brak rezerwacji</h3>
+    {% endif %}
 {% endblock %}

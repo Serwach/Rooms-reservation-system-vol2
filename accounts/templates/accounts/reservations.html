@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+<title>{% block title %}Szczegoly rezerwacji{% endblock %}</title>
+
+{% block body %}
+    <h3> Rezerwacja {{ reservation.id }}</h3>
+    <h4> Zarezerwowal {{ reservation.userid }}</h4>
+    <h4> Sale {{ reservation.roomid }}</h4>
+    <h4> Od {{ reservation.time1 }}</h4>
+    <h4> Do {{ reservation.time2 }}</h4>
+{% endblock %}

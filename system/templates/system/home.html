@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block body %}
+                        {% if all_reservations %}
+                            <h3>Wszystkie rezerwacje:</h3>
+                            <ul>
+                                {% for reservation in all_reservations %}
+                                <li><a href="{% url 'system:reservations' reservation.id %}">{{ reservation.roomid }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <h3>Brak rezerwacji</h3>
+                        {% endif %}
+{% endblock %}

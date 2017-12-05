@@ -1,14 +1,15 @@
 from django.shortcuts import render, redirect
 from accounts.forms import RegistrationForm
+from django.views import generic
+from .models import Reservation
+from django.views.generic.edit import CreateView
 
-# Create your views here.
-def home(request):
-    numbers = [1,2,3,4,5]
-    name = 'Mateusz Serwach'
+class HomeView(generic.ListView):
+    template_name = 'accounts/home.html'
+    context_object_name = 'all_reservations'
 
-    args = {'myName': name, 'numbers': numbers}
-
-    return render(request, 'accounts/home.html', args)
+    def get_queryset(self):
+        return Reservation.objects.all()
 
 def register(request):
     if request.method == 'POST':
@@ -21,3 +22,11 @@ def register(request):
 
         args = {'form': form}
         return render(request, 'accounts/reg_form.html', args)
+
+class ReservationView(generic.DetailView):
+    model = Reservation
+    template_name = 'accounts/reservations.html'
+
+class ReservationCreate(CreateView):
+    model = Reservation
+    fields = ['userid','roomid','time1', 'time2']
